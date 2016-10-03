@@ -1,0 +1,40 @@
+body {
+    background-color: #262626;
+    color:rgba(255,255,255,0.75);
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+    justify-content: center;
+}
+
+svg {
+    margin:auto;
+}
+
+rect.frame{
+    stroke:rgba(255,255,255,0.75);
+    stroke-width: 2px;
+    fill: none;
+}
+
+rect.led {
+    cursor: pointer;
+}
+
+rect.led.off {
+    fill:rgba(255,255,255,0.15);
+}
+
+rect.led.on {
+    fill: rgb(250, 36, 38);
+}
