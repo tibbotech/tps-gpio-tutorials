@@ -3,17 +3,19 @@ const express = require("express");
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const gpio = require("@tibbo-tps/gpio");
+
+const TPSpmap = require( '@tibbo-tps/pinmap');
+const { version, Chip, Line } = require( "node-libgpiod");
+
+global.chip = new Chip(0);
 
 // Serve static assets from the 'public' folder
 app.use("/", express.static('public'));
 
-const led = gpio.init("S15A");
+global.led = new Line( chip, TPSpmap.getRpin( "S15A"));
 
-if(led.getDirection() === "input"){
-    led.setDirection('output');
-    led.setValue(1);
-}
+led.requestOutputMode();
+led.setValue(1);
 
 // Listens for incoming WebSocket connection
 var clients = io.on('connection', function(socket){

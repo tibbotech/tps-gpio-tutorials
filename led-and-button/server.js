@@ -3,22 +3,24 @@ var express = require("express");
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var gpio = require("@tibbo-tps/gpio");
+
+const TPSpmap = require( '@tibbo-tps/pinmap');
+const { version, Chip, Line } = require( "node-libgpiod");
 
 // Serve static assets from the 'public' folder
 app.use("/", express.static('public'));
 
+global.chip = new Chip(0);
 // Set up IO lines
-var led = gpio.init("S13A");
-var button = gpio.init("S11A");
+global.led = new Line(chip, TPSpmap.getRpin( "S13A"));
+global.button = new Line(chip, TPSpmap.getRpin( "S11A"));
 
 var wasButtonPressed = false;
 
-if(led.getDirection() === "input"){
-    led.setDirection('output');
-    led.setValue(1);
-}
-button.setDirection('input');
+led.requestOutputMode();
+led.setValue(1);
+
+button.requestInputMode();
 
 setInterval(function(){
     // If button is just released...

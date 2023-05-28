@@ -1,11 +1,13 @@
 {
   "name": "tps-gpio-tutorials",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "dependencies": {
     "express": "^4.14.0",
     "socket.io": "^1.4.8",
-    "@tibbo-tps/gpio":"^0.0.x"
+    "@tibbo-tps/pinmap": "^0.0.x",
+    "@tibbo-tps/socket-name-parser": "^0.0.x",
+    "node-libgpiod": ">=0.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Voxiferus/tps-gpio-tutorials"
+    "url": "git+https://github.com/tibbotech/tps-gpio-tutorials"
   },
   "author": "Tibbo Technology",
   "license": "MIT",
-  "homepage": "https://github.com/Voxiferus/tps-gpio-tutorials"
+  "homepage": "https://github.com/tibbotech/tps-gpio-tutorials"
 }
